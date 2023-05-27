@@ -1,0 +1,6 @@
+--name Profile Page Tests
+profile_page_tests\title_check.robot
+profile_page_tests\grade_validation.robot
+profile_page_tests\info_popup_validation.robot
+profile_page_tests\filter_validation.robot
+profile_page_tests\percentage_check.robot

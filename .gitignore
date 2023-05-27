@@ -1,4 +1,7 @@
 /results
-*.log
 /tmp
 *__pycache__
+log.html
+report.html
+output.xml
+*.log

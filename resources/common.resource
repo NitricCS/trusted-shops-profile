@@ -10,7 +10,7 @@ ${DOMAIN}                www.trustedshops.de/bewertung
 ${URL}                   https://${DOMAIN}/info_X77B11C1B8A5ABA16DDEC0C30E7996C21.html
 #${URL}                   https://${DOMAIN}/info_X5DD89D3C0A05113C1366DA02591C57DB.html
 ${WIDTH}                 1600
-${HEIGHT}                900
+${HEIGHT}                1000
 ${COOKIE_WINDOW_XPATH}   //*[contains(text(), "Akzeptieren")]
 ${POPUP_LINK_TEXT}       Wie berechnet sich die Note?
 
@@ -19,7 +19,6 @@ Open Browser On Page Under Test
     Open Browser   ${URL}   ${BROWSER}
     Set Window Size   ${WIDTH}   ${HEIGHT}
     Set Selenium Implicit Wait   5
-    Close Cookie Window
 
 Close Cookie Window
     Delete All Cookies

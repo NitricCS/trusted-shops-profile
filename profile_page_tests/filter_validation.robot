@@ -4,7 +4,9 @@ Documentation   Rating filter validation.
 ...             reviews with given number of stars.
 Library         Collections
 Resource         ../resources/common.resource
-Suite Setup     Open Browser On Page Under Test
+Suite Setup     Run Keywords
+...             Open Browser On Page Under Test   AND
+...             Close Cookie Window
 Suite Teardown  Close Browser
 
 *** Variables ***

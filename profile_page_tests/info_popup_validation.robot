@@ -5,7 +5,6 @@ Documentation   Information popup validation.
 ...             Popup is relevant if:
 ...             1. It contains a text about the correct store.
 ...             2. It contains reference about grade calculation.
-Library         ProfileTestLibrary.py
 Resource         ../resources/common.resource
 Suite Setup     Open Browser On Page Under Test
 Suite Teardown  Close Browser
