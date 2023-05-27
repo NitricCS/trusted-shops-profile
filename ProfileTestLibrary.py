@@ -1,4 +1,10 @@
+from robot.libraries.BuiltIn import BuiltIn
+
 class ProfileTestLibrary(object):
+    """ Library includes complex keyword logic
+    for *Trusted Shops profile page** testing.
+    """
+    
     def __init__(self):
         pass
 
@@ -37,13 +43,11 @@ class ProfileTestLibrary(object):
                 except AssertionError:
                     raise AssertionError ("At least one review has a rating different than %s" % (stars))
 
-    def percentage_sum_should_be_valid(self, percentages: list):
+    def percentage_sum_should_be_valid(self):
         """ Verifies that the sum of percentage values is less than or equal to 100.
-        Takes percentage div contents list as an argument.
-
-        Example:
-        Percentage Sum Should Be Valid ${PERCENTAGES}
+        Takes percentage values from the ``${PERCENTAGES}`` list test variable.
         """
+        percentages = BuiltIn().get_variable_value("${PERCENTAGES}")
         sum = 0
         for percentage in percentages:
             number = percentage.split("<span>")[1]

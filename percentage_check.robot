@@ -11,9 +11,9 @@ ${PERCENTAGE_XPATH} =   //body[1]/div[1]/div[1]/div[1]/div[4]/div[2]/div[2]/div[
 
 *** Test Cases ***
 Percentage Sum Is Valid
-    ${PERCENTAGES} =   Get Percentages
-    Should Not Be Empty   ${PERCENTAGES}   The page probably doesn't contain percentages
-    Percentage Sum Should Be Valid   ${PERCENTAGES}
+    Get Percentages
+    Should Not Be Empty   ${PERCENTAGES}   Percentage block not found on the page
+    Percentage Sum Should Be Valid
 
 *** Keywords ***
 Get Percentages
@@ -23,4 +23,4 @@ Get Percentages
         ${PERCENTAGE} =   Get Element Attribute   ${DIV}   innerHTML
         Append To List   ${PERCENTAGES}   ${PERCENTAGE}
     END
-    RETURN   ${PERCENTAGES}
+    Set Test Variable   ${PERCENTAGES}
