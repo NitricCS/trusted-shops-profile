@@ -12,16 +12,16 @@ Suite Teardown  Close Browser
 *** Variables ***
 ${LINK_TEXT}            Wie berechnet sich die Note?
 ${CLOSE_BUTTON_XPATH}   //span[contains(@class,"Modalstyles__CloseIcon")]
-${POPUP_XPATH}          /html[1]/body[1]/div[1]/div[1]/div[1]/div[4]/div[4]
-${STORE_XPATH}          /html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[2]/h1[1]/span[1]
-${HEADER_XPATH}         /html[1]/body[1]/div[1]/div[1]/div[1]/div[4]/div[4]/div[1]/span[1]
-${TEXT_XPATH}           /html[1]/body[1]/div[1]/div[1]/div[1]/div[4]/div[4]/div[2]/div[1]/div[1]/span[1]
+${POPUP_XPATH}          //div[@data-test="modal-dialogue"]
+${STORE_XPATH}          //h1[contains(@class,"Heading-")]/span[1]
+${HEADER_XPATH}         //span[contains(@class,"_ModalTitle-")]
+${TEXT_XPATH}           //div[contains(@class,"Modalstyles__Children")]//span[1]
 ${GRADE_CALC_XPATH}     //pre[contains(text(),'Notenberechnung auf Basis der Sternevergabe')]
 
 *** Test Cases ***
 Popup Opens
     [Setup]      Open Info Popup
-    Popup Should Be Visible
+    Popup Should Open
     [Teardown]   Close Info Popup
 
 Info Is Relevant
@@ -39,7 +39,7 @@ Open Info Popup
 Close Info Popup
     Click Element   xpath: ${CLOSE_BUTTON_XPATH}
 
-Popup Should Be Visible
+Popup Should Open
     Page Should Contain Element   xpath: ${POPUP_XPATH}
 
 Get Store Name
