@@ -2,7 +2,15 @@ class ProfileTestLibrary(object):
     def __init__(self):
         pass
 
-    def rating_should_have_stars(self, rating, stars):
+    def rating_should_have_stars(self, rating: str, stars: int):
+        """Verifies that a review ``rating`` has a given number of ``stars``.
+        *Not suitable* to check ratings with a decimal point (avg rating on profile).
+
+        Example:
+        ``Rating Should Have Stars   ${RATING}   ${3}``
+
+        Use ``Ratings Should Have Stars`` to verify a list of ratings instead.
+        """
         span = rating.split("</span>")
         star_counter = 0
         for star in span:
@@ -11,11 +19,11 @@ class ProfileTestLibrary(object):
         if star_counter != stars:
             raise AssertionError ("Rating has %s stars instead of %s" % (star_counter, stars))
 
-    def ratings_should_have_stars(self, ratings, stars):
-        """ Verifies that all ratings in the list have a given number of stars.
+    def ratings_should_have_stars(self, ratings: list, stars: int):
+        """ Verifies that all ratings in the `list` have a given number of stars.
 
         Example:
-        Ratings Should Have Stars   ${RATINGS}   ${3}
+        ``Ratings Should Have Stars   ${RATINGS}   ${3}``
         """
         for page in ratings:
             for rating in page:
@@ -23,19 +31,9 @@ class ProfileTestLibrary(object):
                     self.rating_should_have_stars(rating, stars)
                 except AssertionError:
                     raise AssertionError ("At least one review has a rating different than %s" % (stars))
-            # for rating in page:
-            #     span = rating.split ("</span>")
-            #     star_counter = 0
-            #     for star in span:
-            #         if ("color:#FFDC0F" in star) or ("color: rgb(255, 220, 15)" in star):
-            #             star_counter = star_counter + 1
-            #     if star_counter != int(stars):
-            #         raise AssertionError ("At least one review has wrong rating %s instead of %s" % (star_counter, stars))
-    
 
-
-    def percentage_sum_should_be_valid(self, percentages):
-        """ Verifies that the sum of percentage values is equal or less than 100.
+    def percentage_sum_should_be_valid(self, percentages: list):
+        """ Verifies that the sum of percentage values is less than or equal to 100.
         Takes percentage div contents list as an argument.
 
         Example:

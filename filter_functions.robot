@@ -8,16 +8,14 @@ Suite Teardown  Close Browser
 
 *** Variables ***
 ${STARS_UNDER_TEST}   ${2}
-${2STAR_XPATH}   //a[contains(@href,"?stars=${STARS_UNDER_TEST}")]
+${STARS_XPATH}   //a[contains(@href,"?stars=${STARS_UNDER_TEST}")]
 ${REVIEW_RATING_XPATH}   //body/div/div/div[1]/div[5]/div/*/div[div[starts-with(@class,"Starsstyles__")] and not(a)]/div[1]
-${RIGHT_ARROW_LINK}      //div[@id='pagination']/*/span[contains(@class,"icon-arrow-chevron-right")]/parent::*
-${PATTERN}    Iconstyles__Icon-sc-hltmf-0
+${RIGHT_ARROW_LINK}      //div[@id='pagination']/*[span[contains(@class,"icon-arrow-chevron-right")]]
 
 *** Test Cases ***
 2 Star Filter Works
-    Click Element   xpath: ${2STAR_XPATH}
+    Click Element   xpath: ${STARS_XPATH}
     ${RATINGS_LIST} =   Get Ratings
-    Log   ${RATINGS_LIST}
     Ratings Should Have Stars   ${RATINGS_LIST}   ${STARS_UNDER_TEST}
 
 *** Keywords ***

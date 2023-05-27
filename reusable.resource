@@ -20,5 +20,5 @@ Open Browser On Page Under Test
 
 Close Cookie Window
     Delete All Cookies
-    Wait Until Page Contains Element   xpath: ${COOKIE_WINDOW_XPATH}
+    Wait Until Page Contains Element   xpath: ${COOKIE_WINDOW_XPATH}   10
     Click Button   ${COOKIE_WINDOW_XPATH}
