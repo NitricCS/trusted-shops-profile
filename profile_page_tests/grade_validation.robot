@@ -1,6 +1,9 @@
 *** Settings ***
 Documentation   Average grade validation on profile page.
 ...             Validates that the grade is displayed and is above zero.
+...             Validating the format of the grade
+...             or any additional value checks
+...             are out of scope of this test.
 Library         String
 Resource         ../resources/common.resource
 Suite Setup     Open Browser On Page Under Test
@@ -11,27 +14,21 @@ ${GRADE_XPATH}   /html[1]/body[1]/div[1]/div[1]/div[1]/div[4]/div[2]/div[1]/div[
 
 *** Test Cases ***
 Grade Is Visible
-    Get Grade
     Grade Should Be Visible
+    Grade Should Not Be Empty
 
 Grade Is Above Zero
-    Get Grade
-    Get First Grade Digit
-    First Grade Digit Should Be Positive
+    Get Grade Value
+    Grade Value Should Be Positive
 
 *** Keywords ***
-Get Grade
-    ${GRADE} =   Get WebElement   xpath: ${GRADE_XPATH}
-    Set Test Variable   ${GRADE}
+Get Grade Value
+    ${GRADE_VALUE} =   Get Element Attribute   xpath: ${GRADE_XPATH}   innerHTML
+    Set Test Variable   ${GRADE_VALUE}
 
 Grade Should Be Visible
-    Element Should Be Visible   ${GRADE}
+    Element Should Be Visible   xpath: ${GRADE_XPATH}
 
-Get First Grade Digit
-    ${VALUE} =   Get Element Attribute   ${GRADE}   innerHTML
-    ${NUM} =   Get Substring   ${VALUE}   0   1
-    ${FIRST_DIGIT} =   Convert To Integer   ${NUM}
-    Set Test Variable   ${FIRST_DIGIT}
-
-First Grade Digit Should Be Positive
-    Should Be True   ${FIRST_DIGIT} > 0
+Grade Should Not Be Empty
+    Get Grade Value
+    Should Not Be Empty   ${GRADE_VALUE}

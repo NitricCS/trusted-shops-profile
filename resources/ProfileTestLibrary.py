@@ -8,13 +8,25 @@ class ProfileTestLibrary(object):
     def __init__(self):
         pass
 
+    def grade_value_should_be_positive(self):
+        """ Verifies that ``${GRADE_VALUE}`` is above zero. """
+        value = BuiltIn().get_variable_value("${GRADE_VALUE}")
+        value = value.replace(",", ".")
+        try:
+            num_value = float(value)
+        except ValueError:
+            raise AssertionError ("Grade %s can't be validated: wrong grade format" % value)
+        if num_value <= 0:
+            raise AssertionError ("Grade %s is not above zero" % value)
+
+
     def extract_store_name(self, span: str) -> str:
-        """ Separates store name on profile page from the verification mark """
+        """ Separates store name on profile page from the verification mark. """
         name = span.split("<span")[0]
         return name
 
     def rating_should_have_stars(self, rating: str, stars: int):
-        """Verifies that a review ``rating`` has a given number of ``stars``.
+        """ Verifies that a review ``rating`` has a given number of ``stars``.
         *Not suitable* to check ratings with a decimal point (avg rating on profile).
 
         Example:
@@ -42,7 +54,7 @@ class ProfileTestLibrary(object):
                 try:
                     self.rating_should_have_stars(rating, stars)
                 except AssertionError:
-                    raise AssertionError ("At least one review has a rating different than %s" % (stars))
+                    raise AssertionError ("At least one review has a rating different than %s" % stars)
 
     def percentage_sum_should_be_valid(self):
         """ Verifies that the sum of percentage values is less than or equal to 100.
@@ -55,4 +67,4 @@ class ProfileTestLibrary(object):
             number = number.split("</span")[0]
             sum = sum + int(number)
         if sum > 100:
-            raise AssertionError("Percentage sum is %s, but should be equal or less than 100" % (sum))
+            raise AssertionError("Percentage sum is %s, but should be equal or less than 100" % sum)
