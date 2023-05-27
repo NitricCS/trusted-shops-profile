@@ -1,22 +1,22 @@
 *** Settings ***
-Documentation   Test the 2-star filter
+Documentation   Rating filter validation.
+...             Checks if clicking on a star rating filters out
+...             reviews with given number of stars.
 Library         Collections
-Library         ProfileTestLibrary.py
-Resource        reusable.resource
+Resource         ../resources/common.resource
 Suite Setup     Open Browser On Page Under Test
 Suite Teardown  Close Browser
 
 *** Variables ***
-${STARS_UNDER_TEST}   ${2}
-${FILTER_XPATH}   //a[contains(@href,"?stars=${STARS_UNDER_TEST}")]
+${STARS_UNDER_TEST}      ${2}
+${FILTER_XPATH}          //a[contains(@href,"?stars=${STARS_UNDER_TEST}")]
 ${REVIEW_RATING_XPATH}   //body/div/div/div[1]/div[5]/div/*/div[div[starts-with(@class,"Starsstyles__")] and not(a)]/div[1]
 ${RIGHT_ARROW_LINK}      //div[@id='pagination']/*[span[contains(@class,"icon-arrow-chevron-right")]]
 
 *** Test Cases ***
 Rating Filter
-    [Setup]   Click Element   xpath: ${FILTER_XPATH}
+    [Setup]   Click Element     xpath: ${FILTER_XPATH}
     Get Ratings
-    Log   ${RATINGS_LIST}
     Ratings Should Have Stars   ${STARS_UNDER_TEST}
 
 *** Keywords ***
@@ -37,7 +37,7 @@ Get Ratings
 
 Get Ratings On Page
     ${PAGE_RATINGS} =   Create List
-    @{RATING_DIVS} =   Get WebElements   xpath: ${REVIEW_RATING_XPATH}
+    @{RATING_DIVS} =    Get WebElements   xpath: ${REVIEW_RATING_XPATH}
     FOR  ${DIV}  IN  @{RATING_DIVS}
         ${RATING} =   Get Element Attribute   ${DIV}   innerHTML
         Append To List   ${PAGE_RATINGS}   ${RATING}

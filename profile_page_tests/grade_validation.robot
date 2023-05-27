@@ -2,7 +2,7 @@
 Documentation   Average grade validation on profile page.
 ...             Validates that the grade is displayed and is above zero.
 Library         String
-Resource        reusable.resource
+Resource         ../resources/common.resource
 Suite Setup     Open Browser On Page Under Test
 Suite Teardown  Close Browser
 

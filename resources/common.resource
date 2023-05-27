@@ -1,6 +1,8 @@
 *** Settings ***
-Documentation   This file contains basic keywords and reusable variables for the tests.
+Documentation   Resource file with setup keywords and base variables
+...             for Trusted Shops profile page testing.
 Library         SeleniumLibrary   run_on_failure=None
+Library         ProfileTestLibrary.py
 
 *** Variables ***
 ${BROWSER}               Chrome
@@ -23,6 +25,3 @@ Close Cookie Window
     Delete All Cookies
     Wait Until Page Contains Element   xpath: ${COOKIE_WINDOW_XPATH}   10
     Click Button   ${COOKIE_WINDOW_XPATH}
-
-# Open Info Popup
-#     Click Element   link: ${POPUP_LINK_TEXT}

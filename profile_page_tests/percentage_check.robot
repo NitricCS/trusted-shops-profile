@@ -1,8 +1,7 @@
 *** Settings ***
 Documentation   Percentage validation test
 Library         Collections
-Library         ProfileTestLibrary.py
-Resource        reusable.resource
+Resource         ../resources/common.resource
 Suite Setup     Open Browser On Page Under Test
 Suite Teardown  Close Browser
 

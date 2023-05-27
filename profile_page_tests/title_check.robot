@@ -1,6 +1,6 @@
 *** Settings ***
 Documentation    Test to verify that page title exists.
-Resource         reusable.resource
+Resource         ../resources/common.resource
 Suite Setup      Open Browser On Page Under Test
 Suite Teardown   Close Browser
 
