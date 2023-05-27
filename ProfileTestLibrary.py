@@ -2,9 +2,9 @@ from robot.libraries.BuiltIn import BuiltIn
 
 class ProfileTestLibrary(object):
     """ Library includes complex keyword logic
-    for *Trusted Shops profile page** testing.
+    for *Trusted Shops profile page* testing.
     """
-    
+
     def __init__(self):
         pass
 
@@ -30,12 +30,13 @@ class ProfileTestLibrary(object):
         if star_counter != stars:
             raise AssertionError ("Rating has %s stars instead of %s" % (star_counter, stars))
 
-    def ratings_should_have_stars(self, ratings: list, stars: int):
-        """ Verifies that all ratings in the `list` have a given number of stars.
+    def ratings_should_have_stars(self, stars: int):
+        """ Verifies that all ratings in ${RATINGS_LIST} have a given number of stars.
 
         Example:
-        ``Ratings Should Have Stars   ${RATINGS}   ${3}``
+        ``Ratings Should Have Stars   ${3}``
         """
+        ratings = BuiltIn().get_variable_value("${RATINGS_LIST}")
         for page in ratings:
             for rating in page:
                 try:
