@@ -1,12 +1,13 @@
 *** Settings ***
-Documentation   Percentage validation test
+Documentation   Test to verify that percentage sum
+...             is less than or equal to 100.
 Library         Collections
 Resource         ../resources/common.resource
 Suite Setup     Open Browser On Page Under Test
 Suite Teardown  Close Browser
 
 *** Variables ***
-${PERCENTAGE_XPATH} =   //body[1]/div[1]/div[1]/div[1]/div[4]/div[2]/div[2]/div[1]//div[span[text()='%']]
+${PERCENTAGE_XPATH} =   //div[h3[contains(@class,"Heading-")]]//div[span[text()='%']]
 
 *** Test Cases ***
 Percentage Sum Is Valid
