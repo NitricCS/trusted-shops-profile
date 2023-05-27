@@ -2,6 +2,11 @@ class ProfileTestLibrary(object):
     def __init__(self):
         pass
 
+    def extract_store_name(self, span: str) -> str:
+        """ Separates store name on profile page from the verification mark """
+        name = span.split("<span")[0]
+        return name
+
     def rating_should_have_stars(self, rating: str, stars: int):
         """Verifies that a review ``rating`` has a given number of ``stars``.
         *Not suitable* to check ratings with a decimal point (avg rating on profile).
