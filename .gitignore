@@ -1,4 +1,4 @@
 /results
 *.log
 *tmp*
-*.pyc
+/__pycache__
