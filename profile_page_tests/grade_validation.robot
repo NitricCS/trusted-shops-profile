@@ -10,7 +10,7 @@ Suite Setup     Open Browser On Page Under Test
 Suite Teardown  Close Browser
 
 *** Variables ***
-${GRADE_XPATH}   /html[1]/body[1]/div[1]/div[1]/div[1]/div[4]/div[2]/div[1]/div[1]/div[2]/span[1]
+${GRADE_XPATH}   //div[div[a[text()="Wie berechnet sich die Note?"]]]/div[1]/div[2]/span[1]
 
 *** Test Cases ***
 Grade Is Visible
