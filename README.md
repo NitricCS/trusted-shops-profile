@@ -26,11 +26,12 @@ This will only run the Filter Validation test.
 Some parameters of the tests can be changed by editing the RF variables.
 #### resources/common.resource
 * _${URL}_ can be changed to test a different profile page.
-* _${BROWSER}_ is responsible for the browser that the test will be run in. The suites are designed to be executed in _Chrome_ but should work in other browsers as well.
+* _${BROWSER}_ is responsible for the browser that the test will be run in.\
+The suites are designed to be executed in _Chrome_ but should work in other browsers as well.
 * _${WIDTH}_ and _${HEIGHT}_ can be changed to control window size.
 #### profile_page_tests/filter_validation.robot
 * _${STARS_UNDER_TEST}_ variable can be changed to test different star ratings.
 
 ## Results
-The running progress and immediate results will be displayed in the command line.
+The running progress and immediate results will be displayed in the command line.\
 Robot Framework will also generate ``report.html`` and ``log.html`` with detailed information regarding each test.
