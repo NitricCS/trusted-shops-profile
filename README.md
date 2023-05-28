@@ -3,9 +3,10 @@ Tests to validate profile page properties:
 1. **Title Check**: checks if title exists.
 2. **Grade Validation**: checks if average grade is visible and avove zero.
 3. **Info Popup Validation**: checks if information popup opens and contains relevant information.
-⋅⋅* Information is considered relevant if:
-⋅⋅⋅* it contains a text about the correct store
-⋅⋅⋅* it contains reference about grade calculation
+
+⋅⋅ Information is considered relevant if:
+⋅⋅⋅ it contains a text about the correct store
+⋅⋅⋅ it contains reference about grade calculation
 4. **Filter Validation**: checks if clicking on a given number of stars filters out reviews with that number of stars.
 5. **Percentage Check**: checks if percentage sum is equal to or less than 100.
 
