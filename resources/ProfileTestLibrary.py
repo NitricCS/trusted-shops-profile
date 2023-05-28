@@ -25,11 +25,9 @@ class ProfileTestLibrary(object):
 
     def rating_should_have_stars(self, rating: str, stars: int):
         """ Verifies that a review ``rating`` has a given number of ``stars``.
-        *Not suitable* to check ratings with a decimal point (avg rating on profile).
         Example: ``Rating Should Have Stars   ${RATING}   ${3}``
         Use ``Ratings Should Have Stars`` to verify a list of ratings instead.
         """
-
         span = rating.split("</span>")
         for i in range(0, stars):                                                                     # check stars in order one by one
             if ("color:#FFDC0F" not in span[i]) and ("color: rgb(255, 220, 15)" not in span[i]):      # otherwise *--*- would be a correct rating
@@ -44,7 +42,7 @@ class ProfileTestLibrary(object):
         """
         ratings = BuiltIn().get_variable_value("${RATINGS_LIST}")
         if len(ratings) == 0:
-            raise AssertionError ("Ratings list is empty")
+            raise AssertionError ("List of ratings is empty")
         for page in ratings:
             for rating in page:
                 try:
@@ -53,9 +51,7 @@ class ProfileTestLibrary(object):
                     raise AssertionError ("At least one rating is wrong.")
 
     def percentage_sum_should_be_valid(self):
-        """ Verifies that the sum of percentage values is less than or equal to 100.
-        Takes percentage values from the ``${PERCENTAGES}`` list test variable. """
-
+        """ Verifies that the sum of values in ``${PERCENTAGES}`` is less than or equal to 100. """
         percentages = BuiltIn().get_variable_value("${PERCENTAGES}")
         sum = 0
         for percentage in percentages:
