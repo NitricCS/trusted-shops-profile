@@ -11,7 +11,7 @@ Suite Teardown  Close Browser
 
 *** Variables ***
 ${STARS_UNDER_TEST}      ${2}
-${FILTER_XPATH}          //a[contains(@href,"?stars=${STARS_UNDER_TEST}")]
+${FILTER_XPATH}          //a[contains(@href,"?stars=${STARS_UNDER_TEST}") and div[text()="${STARS_UNDER_TEST}"]]
 ${REVIEW_RATING_XPATH}   //body/div/div/div[1]/div[5]/div/*/div[div[starts-with(@class,"Starsstyles__")] and not(a)]/div[1]
 ${RIGHT_ARROW_LINK}      //div[@id='pagination']/*[span[contains(@class,"icon-arrow-chevron-right")]]
 

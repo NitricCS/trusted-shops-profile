@@ -2,8 +2,7 @@ from robot.libraries.BuiltIn import BuiltIn
 
 class ProfileTestLibrary(object):
     """ Library includes complex keyword logic
-    for *Trusted Shops profile page* testing.
-    """
+    for *Trusted Shops profile page* testing. """
 
     def __init__(self):
         pass
@@ -19,7 +18,6 @@ class ProfileTestLibrary(object):
         if num_value <= 0:
             raise AssertionError ("Grade %s is not above zero" % value)
 
-
     def extract_store_name(self, span: str) -> str:
         """ Separates store name on profile page from the verification mark. """
         name = span.split("<span")[0]
@@ -28,38 +26,36 @@ class ProfileTestLibrary(object):
     def rating_should_have_stars(self, rating: str, stars: int):
         """ Verifies that a review ``rating`` has a given number of ``stars``.
         *Not suitable* to check ratings with a decimal point (avg rating on profile).
-
-        Example:
-        ``Rating Should Have Stars   ${RATING}   ${3}``
-
+        Example: ``Rating Should Have Stars   ${RATING}   ${3}``
         Use ``Ratings Should Have Stars`` to verify a list of ratings instead.
         """
+
         span = rating.split("</span>")
-        star_counter = 0
-        for star in span:
-            if ("color:#FFDC0F" in star) or ("color: rgb(255, 220, 15)" in star):
-                star_counter = star_counter + 1
-        if star_counter != stars:
-            raise AssertionError ("Rating has %s stars instead of %s" % (star_counter, stars))
+        for i in range(0, stars):                                                                     # check stars in order one by one
+            if ("color:#FFDC0F" not in span[i]) and ("color: rgb(255, 220, 15)" not in span[i]):      # otherwise *--*- would be a correct rating
+                raise AssertionError ("Rating has incorrect number of stars.")
+        for i in range(stars, 5):
+            if ("color:#FFDC0F" in span[i]) or ("color: rgb(255, 220, 15)" in span[i]):
+                raise AssertionError ("Rating has incorrect number of stars.")
 
     def ratings_should_have_stars(self, stars: int):
-        """ Verifies that all ratings in ${RATINGS_LIST} have a given number of stars.
-
-        Example:
-        ``Ratings Should Have Stars   ${3}``
+        """ Verifies that all ratings in ``${RATINGS_LIST}`` have a given number of stars.
+        Example: ``Ratings Should Have Stars   ${3}``
         """
         ratings = BuiltIn().get_variable_value("${RATINGS_LIST}")
+        if len(ratings) == 0:
+            raise AssertionError ("Ratings list is empty")
         for page in ratings:
             for rating in page:
                 try:
                     self.rating_should_have_stars(rating, stars)
-                except AssertionError:
-                    raise AssertionError ("At least one review has a rating different than %s" % stars)
+                except AssertionError as e:
+                    raise AssertionError ("At least one rating is wrong.")
 
     def percentage_sum_should_be_valid(self):
         """ Verifies that the sum of percentage values is less than or equal to 100.
-        Takes percentage values from the ``${PERCENTAGES}`` list test variable.
-        """
+        Takes percentage values from the ``${PERCENTAGES}`` list test variable. """
+
         percentages = BuiltIn().get_variable_value("${PERCENTAGES}")
         sum = 0
         for percentage in percentages:
