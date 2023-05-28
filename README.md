@@ -14,7 +14,7 @@ Tests require **Robot Framework 6.0.2** and **SeleniumLibrary 6.1.0** for Robot 
 Packages can be installed through ``pip install -r requirements.txt`` using the included requirements file.
 
 ## Executing Tests
-The repository includes an argument file __profile_page_tests.robot__ that can be used to run the tests exactly in the order provided above.\
+The repository includes an argument file _profile_page_tests.robot_ that can be used to run the tests exactly in the order provided above.\
 To do that, run ``robot --argumentfile profile_page_tests.robot`` command in the root directory.
 
 The tests can also be executed in alphabetical order by running ``robot profile_page_tests``.
@@ -30,7 +30,7 @@ Some parameters of the tests can be changed by editing the RF variables.
 The suites are designed to be executed in _Chrome_ but should work in other browsers as well.
 * _${WIDTH}_ and _${HEIGHT}_ can be changed to control window size.
 #### profile_page_tests/filter_validation.robot
-* __${STARS_UNDER_TEST}__ variable can be changed to test different star ratings.
+* _${STARS_UNDER_TEST}_ variable can be changed to test different star ratings.
 
 ## Results
 The running progress and immediate results will be displayed in the command line.\
