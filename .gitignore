@@ -1,5 +1,6 @@
 /results
 /tmp
+/pdf
 *__pycache__
 log.html
 report.html
