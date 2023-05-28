@@ -14,13 +14,12 @@ Tests require **Robot Framework 6.0.2** and **SeleniumLibrary 6.1.0** for Robot 
 Packages can be installed through ``pip install -r requirements.txt`` using the included requirements file.
 
 ## Executing Tests
-Tests can be executed by running ``robot --argumentfile profile_page_tests.robot`` command in the root directory.
-This command will execute the tests in the order provided above.
+The repository includes an argument file profile_page_tests.robot that can be used to run the tests exactly in the order provided above.\
+To do that, run ``robot --argumentfile profile_page_tests.robot`` command in the root directory.
 
-The tests can also be executed by running ``robot profile_page_tests``.
-This will run the tests in alphabetical order.
+The tests can also be executed in alphabetical order by running ``robot profile_page_tests``.
 
-Any test can be executed individually: ``robot profile_page_tests/filter_validation.robot``.
+Any test can be executed individually: ``robot profile_page_tests/filter_validation.robot``.\
 This will only run the Filter Validation test.
 
 ## Settings
